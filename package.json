@@ -1,0 +1,39 @@
+{
+  "name": "cycle-resize",
+  "version": "1.0.0",
+  "description": "A readonly driver for window resize events, for Cycle.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc --watch",
+    "test": "browserify src/test/inject.js > src/test/inject-bundle.js && mocha src/test/*.test.js --watch",
+    "doc": "mkdir doc && documentation build src/index.js -f md --shallow > doc/documentation.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mathieueveillard/cycle-resize.git"
+  },
+  "keywords": [
+    "cyclejs",
+    "driver",
+    "typescript",
+    "resize"
+  ],
+  "author": "Mathieu Eveillard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mathieueveillard/cycle-resize/issues"
+  },
+  "homepage": "https://github.com/mathieueveillard/cycle-resize#readme",
+  "dependencies": {
+    "@cycle/run": "^4.4.0",
+    "xstream": "^11.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^10.5.8",
+    "@types/phantom": "^3.2.5",
+    "documentation": "^8.1.0",
+    "mocha": "^5.2.0",
+    "phantom": "^6.0.3",
+    "typescript": "^3.0.1"
+  }
+}
