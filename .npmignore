@@ -1,0 +1,5 @@
+.vscode
+doc
+node_modules
+.gitignore
+.prettierrc

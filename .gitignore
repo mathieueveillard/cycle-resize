@@ -63,5 +63,6 @@ src/**/*.js
 src/*.test.js
 src/**/*.test.js
 
-# Folder for documentation generation
 doc/
+
+lib/

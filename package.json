@@ -1,12 +1,14 @@
 {
   "name": "cycle-resize",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A readonly driver for window resize events, for Cycle.js",
-  "main": "index.js",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
-    "start": "tsc --watch",
-    "test": "browserify src/test/inject.js > src/test/inject-bundle.js && mocha src/test/*.test.js --watch",
-    "doc": "mkdir doc && documentation build src/index.js -f md --shallow > doc/documentation.md"
+    "test": "tsc && browserify src/test/inject.js > src/test/inject-bundle.js && mocha src/test/*.test.js --watch",
+    "build": "tsc && cp src/index.js lib && cp src/index.d.ts lib",
+    "doc": "mkdir doc && documentation build src/index.js -f md --shallow > doc/documentation.md",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",

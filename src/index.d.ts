@@ -1,29 +1,4 @@
-import { Stream, Listener, Producer } from 'xstream';
-import pairwise from 'xstream/extra/pairwise';
-import { adapt } from '@cycle/run/lib/adapt';
-
-interface RawResizeEvent {
-  width: number;
-  height: number;
-}
-
-class ResizeProducer implements Producer<RawResizeEvent> {
-  listener: (event: UIEvent) => any;
-
-  start(listener: Listener<RawResizeEvent>) {
-    this.listener = (event: UIEvent) => {
-      listener.next({
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
-    };
-    window.addEventListener('resize', this.listener);
-  }
-
-  stop() {
-    window.removeEventListener('resize', this.listener);
-  }
-}
+import { Stream } from 'xstream';
 
 export interface ResizeEvent {
   deltaX: number;
@@ -32,19 +7,7 @@ export interface ResizeEvent {
 
 export class ResizeSource {
   resize$: Stream<ResizeEvent>;
-
-  constructor() {
-    const nativeResize$ = Stream.create(new ResizeProducer());
-    const deltaResize$ = nativeResize$.compose(pairwise).map(computeResizeEvent);
-    this.resize$ = adapt(deltaResize$);
-
-    function computeResizeEvent([from, to]: [RawResizeEvent, RawResizeEvent]) {
-      return {
-        deltaX: to.width - from.width,
-        deltaY: to.height - from.height
-      };
-    }
-  }
+  constructor();
 }
 
 /**
@@ -78,17 +41,10 @@ export class ResizeSource {
  * run(main, drivers);
  * ```
  */
-export function makeResizeDriver(): () => ResizeSource {
-  return function ResizeDriver(): ResizeSource {
-    return new ResizeSource();
-  };
-}
+export function makeResizeDriver(): () => ResizeSource;
 
 export class MockedResizeSource extends ResizeSource {
-  constructor(diagram: Stream<ResizeEvent>) {
-    super();
-    this.resize$ = diagram;
-  }
+  constructor(diagram: Stream<ResizeEvent>);
 }
 
 /**
@@ -127,6 +83,4 @@ export class MockedResizeSource extends ResizeSource {
  * ```
  * @param diagram A stream of `ResizeEvent`
  */
-export function mockResizeSource(diagram: Stream<ResizeEvent>): MockedResizeSource {
-  return new MockedResizeSource(diagram);
-}
+export function mockResizeSource(diagram: Stream<ResizeEvent>): MockedResizeSource;
