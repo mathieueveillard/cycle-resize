@@ -1,15 +1,12 @@
 import { Stream } from 'xstream';
-
 export interface ResizeEvent {
-  deltaX: number;
-  deltaY: number;
+    deltaX: number;
+    deltaY: number;
 }
-
-export class ResizeSource {
-  resize$: Stream<ResizeEvent>;
-  constructor();
+export declare class ResizeSource {
+    resize$: Stream<ResizeEvent>;
+    constructor();
 }
-
 /**
  * A factory that returns a `ResizeDriver()` function to be called by `@cycle/run` `run()`.
  *
@@ -41,12 +38,10 @@ export class ResizeSource {
  * run(main, drivers);
  * ```
  */
-export function makeResizeDriver(): () => ResizeSource;
-
-export class MockedResizeSource extends ResizeSource {
-  constructor(diagram: Stream<ResizeEvent>);
+export declare function makeResizeDriver(): () => ResizeSource;
+export declare class MockedResizeSource extends ResizeSource {
+    constructor(diagram: Stream<ResizeEvent>);
 }
-
 /**
  * A function that returns a mocked `ResizeSource`, the stream of `ResizeEvent`
  * beeing provided as input.
@@ -83,4 +78,4 @@ export class MockedResizeSource extends ResizeSource {
  * ```
  * @param diagram A stream of `ResizeEvent`
  */
-export function mockResizeSource(diagram: Stream<ResizeEvent>): MockedResizeSource;
+export declare function mockResizeSource(diagram: Stream<ResizeEvent>): MockedResizeSource;

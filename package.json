@@ -5,9 +5,10 @@
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {
-    "test": "tsc && browserify src/test/inject.js > src/test/inject-bundle.js && mocha src/test/*.test.js --watch",
-    "build": "tsc && cp src/index.js lib && cp src/index.d.ts lib",
-    "doc": "mkdir doc && documentation build src/index.js -f md --shallow > doc/documentation.md",
+    "start": "tsc --watch",
+    "test": "browserify src/test/inject.js > src/test/inject-bundle.js && mocha src/test/*.test.js --watch",
+    "build": "rm -rf lib && mkdir lib && tsc && cp src/index.js lib && cp src/index.d.ts lib",
+    "doc": "rm -rf doc && mkdir doc && documentation build src/index.js -f md --shallow > doc/documentation.md",
     "prepublishOnly": "npm run build"
   },
   "repository": {

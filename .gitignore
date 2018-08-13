@@ -62,6 +62,7 @@ src/*.js
 src/**/*.js
 src/*.test.js
 src/**/*.test.js
+src/test/*.d.ts
 
 doc/
 
